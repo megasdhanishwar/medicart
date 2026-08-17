@@ -15,12 +15,16 @@ import Contact from "./Pages/Contact";
 import Login from "./Pages/Login";
 import NotFound from "./Pages/NotFound";
 import Footer from "./Components/Footer";
+import ScrollToTop from "./Components/ScrollToTop";
+
 
 import "./App.css";
 
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
+
       <Navbar />
 
       <Routes>

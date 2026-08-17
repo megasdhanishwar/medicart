@@ -14,8 +14,8 @@ const initialState = {
     pincode: "",
     paymentMethod: "Cash on Delivery",
   },
-
   errors: {},
+  success: false,
 };
 
 function checkoutReducer(state, action) {
@@ -23,12 +23,10 @@ function checkoutReducer(state, action) {
     case "UPDATE_FIELD":
       return {
         ...state,
-
         formData: {
           ...state.formData,
           [action.field]: action.value,
         },
-
         errors: {
           ...state.errors,
           [action.field]: "",
@@ -39,6 +37,12 @@ function checkoutReducer(state, action) {
       return {
         ...state,
         errors: action.errors,
+      };
+
+    case "SUCCESS":
+      return {
+        ...state,
+        success: true,
       };
 
     case "RESET":
@@ -53,7 +57,6 @@ export default function Checkout() {
   const navigate = useNavigate();
 
   const { cartItems, clearCart } = useCart();
-
   const { addOrder } = useOrders();
 
   const [state, dispatch] = useReducer(checkoutReducer, initialState);
@@ -65,6 +68,25 @@ export default function Checkout() {
   const cityId = useId();
   const stateId = useId();
   const pincodeId = useId();
+
+  /* Order Success */
+
+  if (state.success) {
+    return (
+      <div className="status-message">
+        <h2>Order Placed Successfully! 🎉</h2>
+
+        <p>
+          Your order has been placed successfully. Thank you for shopping with
+          us.
+        </p>
+
+        <button className="details-button" onClick={() => navigate("/orders")}>
+          View My Orders
+        </button>
+      </div>
+    );
+  }
 
   /* Empty Cart */
 
@@ -167,41 +189,28 @@ export default function Checkout() {
       return;
     }
 
-    /*
-            Order is successfully placed.
-            Clear cart and navigate to Orders page.
-        */
-
     const order = {
       id: Date.now(),
-
       orderDate: new Date().toLocaleString(),
-
       customer: {
         ...state.formData,
       },
-
       items: [...cartItems],
-
       status: "Order Placed",
     };
 
     addOrder(order);
 
-    dispatch({
-      type: "RESET",
-    });
-
     clearCart();
 
-    navigate("/orders");
+    dispatch({
+      type: "SUCCESS",
+    });
   };
 
   return (
     <div className="checkout-page">
       <div className="checkout-container">
-        {/* Heading */}
-
         <div className="checkout-heading">
           <h1>Checkout</h1>
 
@@ -353,7 +362,6 @@ export default function Checkout() {
               onChange={handleChange}
             >
               <option>Cash on Delivery</option>
-
               <option>Online Payment</option>
             </select>
           </div>
