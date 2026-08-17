@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navbar from "./Components/Navbar";
 
@@ -13,96 +9,68 @@ import MedicineDetails from "./Pages/MedicineDetails";
 import Cart from "./Pages/Cart";
 import Checkout from "./Pages/Checkout";
 import Orders from "./Pages/Orders";
+import OrderDetails from "./Pages/OrderDetails";
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
+import Login from "./Pages/Login";
 import NotFound from "./Pages/NotFound";
-import OrderDetails from "./Pages/OrderDetails";
+import Footer from "./Components/Footer";
 
 import "./App.css";
 
-
 export default function App() {
-
   return (
-
     <BrowserRouter>
+      {/* Navbar */}
 
       <Navbar />
 
+      {/* Application Routes */}
+
       <Routes>
-
         {/* Home */}
-        <Route
-          path="/"
-          element={<Home />}
-        />
 
+        <Route path="/" element={<Home />} />
+
+        <Route path="/login" element={<Login />} />
 
         {/* Medicines */}
-        <Route
-          path="/medicines"
-          element={<Medicines />}
-        />
 
+        <Route path="/medicines" element={<Medicines />} />
 
-        {/* Dynamic Medicine Details */}
-        <Route
-          path="/medicines/:id"
-          element={<MedicineDetails />}
-        />
+        {/* Medicine Details */}
 
+        <Route path="/medicines/:id" element={<MedicineDetails />} />
 
         {/* Cart */}
-        <Route
-          path="/cart"
-          element={<Cart />}
-        />
 
+        <Route path="/cart" element={<Cart />} />
 
         {/* Checkout */}
-        <Route
-          path="/checkout"
-          element={<Checkout />}
-        />
 
+        <Route path="/checkout" element={<Checkout />} />
 
         {/* Orders */}
-        <Route
-          path="/orders"
-          element={<Orders />}
-        />
-
-
-        {/* About */}
-        <Route
-          path="/about"
-          element={<About />}
-        />
-
-
-        {/* Contact */}
-        <Route
-          path="/contact"
-          element={<Contact />}
-        />
-
-
-        {/* 404 */}
-        <Route
-          path="*"
-          element={<NotFound />}
-        />
 
         <Route path="/orders" element={<Orders />} />
 
-        <Route
-            path="/orders/:id"
-            element={<OrderDetails />}
-        />
+        {/* Order Details */}
 
+        <Route path="/orders/:id" element={<OrderDetails />} />
+
+        {/* About */}
+
+        <Route path="/about" element={<About />} />
+
+        {/* Contact */}
+
+        <Route path="/contact" element={<Contact />} />
+
+        {/* 404 Page */}
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
-
+      <Footer />
     </BrowserRouter>
-
   );
 }
