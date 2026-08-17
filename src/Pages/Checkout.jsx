@@ -1,4 +1,4 @@
-import React, { useId, useReducer } from "react";
+import React, { useEffect, useId, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../Context/CartContext";
 import { useOrders } from "../Context/OrderContext";
@@ -68,6 +68,14 @@ export default function Checkout() {
   const cityId = useId();
   const stateId = useId();
   const pincodeId = useId();
+
+  /* Scroll to Top After Order Success */
+
+  useEffect(() => {
+    if (state.success) {
+      window.scrollTo(0, 0);
+    }
+  }, [state.success]);
 
   /* Order Success */
 
