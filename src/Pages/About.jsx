@@ -3,7 +3,6 @@ import React from "react";
 export default function About() {
   return (
     <div className="about-page">
-      {/* Heading */}
 
       <div className="about-heading">
         <h1>About MediCart</h1>
@@ -14,7 +13,6 @@ export default function About() {
         </p>
       </div>
 
-      {/* What We Provide */}
 
       <div className="about-section">
         <h2>What We Provide</h2>

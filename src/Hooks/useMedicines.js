@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 
-export default function useMedicines() {
+function useMedicines() {
   const [medicines, setMedicines] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -35,3 +35,4 @@ export default function useMedicines() {
     error,
   };
 }
+export default useMedicines;

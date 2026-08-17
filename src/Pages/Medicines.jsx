@@ -7,8 +7,6 @@ import MedicineCard from "../Components/MedicineCard";
 export default function Medicines() {
   const { medicines, loading, error } = useMedicines();
 
-  // useSearchParams
-
   const [searchParams, setSearchParams] = useSearchParams();
 
   // Get search value from URL

@@ -50,37 +50,23 @@ export default function OrderDetails() {
           <h2>Delivery Information</h2>
 
           <div className="customer-details">
-            <p>
-              <strong>Name:</strong> {order.customer.fullName}
-            </p>
 
-            <p>
-              <strong>Mobile:</strong> {order.customer.mobile}
-            </p>
+            <p><strong>Name:</strong> {order.customer.fullName}</p>
 
-            <p>
-              <strong>Email:</strong> {order.customer.email}
-            </p>
+            <p><strong>Mobile:</strong> {order.customer.mobile}</p>
 
-            <p>
-              <strong>Address:</strong> {order.customer.address}
-            </p>
+            <p><strong>Email:</strong> {order.customer.email}</p>
 
-            <p>
-              <strong>City:</strong> {order.customer.city}
-            </p>
+            <p><strong>Address:</strong> {order.customer.address}</p>
 
-            <p>
-              <strong>State:</strong> {order.customer.state}
-            </p>
+            <p><strong>City:</strong> {order.customer.city}</p>
 
-            <p>
-              <strong>Pincode:</strong> {order.customer.pincode}
-            </p>
+            <p><strong>State:</strong> {order.customer.state}</p>
 
-            <p>
-              <strong>Payment:</strong> {order.customer.paymentMethod}
-            </p>
+            <p><strong>Pincode:</strong> {order.customer.pincode}</p>
+
+            <p><strong>Payment:</strong> {order.customer.paymentMethod}</p>
+            
           </div>
         </div>
 

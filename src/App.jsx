@@ -21,52 +21,28 @@ import "./App.css";
 export default function App() {
   return (
     <BrowserRouter>
-      {/* Navbar */}
-
       <Navbar />
 
-      {/* Application Routes */}
-
       <Routes>
-        {/* Home */}
-
         <Route path="/" element={<Home />} />
 
         <Route path="/login" element={<Login />} />
 
-        {/* Medicines */}
-
         <Route path="/medicines" element={<Medicines />} />
-
-        {/* Medicine Details */}
 
         <Route path="/medicines/:id" element={<MedicineDetails />} />
 
-        {/* Cart */}
-
         <Route path="/cart" element={<Cart />} />
-
-        {/* Checkout */}
 
         <Route path="/checkout" element={<Checkout />} />
 
-        {/* Orders */}
-
         <Route path="/orders" element={<Orders />} />
-
-        {/* Order Details */}
 
         <Route path="/orders/:id" element={<OrderDetails />} />
 
-        {/* About */}
-
         <Route path="/about" element={<About />} />
 
-        {/* Contact */}
-
         <Route path="/contact" element={<Contact />} />
-
-        {/* 404 Page */}
 
         <Route path="*" element={<NotFound />} />
       </Routes>

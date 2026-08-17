@@ -15,7 +15,6 @@ export default function Login() {
 
   const [message, setMessage] = useState("");
 
-  /* Handle Input */
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -33,7 +32,6 @@ export default function Login() {
     setMessage("");
   };
 
-  /* Validation */
 
   const validateForm = () => {
     const newErrors = {};
@@ -53,7 +51,6 @@ export default function Login() {
     return newErrors;
   };
 
-  /* Submit */
 
   const handleSubmit = (event) => {
     event.preventDefault();
