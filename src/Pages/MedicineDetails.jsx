@@ -1,54 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link, useParams } from "react-router-dom";
+import useMedicineDetails from "../Hooks/useMedicineDetails";
 
 export default function MedicineDetails() {
 
     const { id } = useParams();
 
-
-    const [medicine, setMedicine] = useState(null);
-
-    const [loading, setLoading] = useState(true);
-
-    const [error, setError] = useState(false);
-
-
-    useEffect(() => {
-
-        fetch(
-            `https://api.fda.gov/drug/label.json?search=openfda.spl_set_id:${id}`
-        )
-            .then((response) => {
-
-                if (!response.ok) {
-                    throw new Error("Medicine not found");
-                }
-
-                return response.json();
-
-            })
-            .then((data) => {
-
-                if (!data.results || data.results.length === 0) {
-                    throw new Error("Medicine not found");
-                }
-
-                setMedicine(data.results[0]);
-
-                setLoading(false);
-
-            })
-            .catch((error) => {
-
-                console.log(error);
-
-                setError(true);
-
-                setLoading(false);
-
-            });
-
-    }, [id]);
+    const {
+        medicine,
+        loading,
+        error
+    } = useMedicineDetails(id);
 
 
     /* Loading */

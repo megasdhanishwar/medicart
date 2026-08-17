@@ -12,40 +12,38 @@ export function CartProvider({ children }) {
 
     // Add medicine to cart
     const addToCart = (medicine) => {
+      setCartItems((previousItems) => {
+        const existingMedicine = previousItems.find(
+          (item) => item.id === medicine.id,
+        );
 
-        setCartItems((previousItems) => {
-
-            const existingMedicine = previousItems.find(
-                (item) => item.id === medicine.id
-            );
-
-
-            // If medicine already exists
-            if (existingMedicine) {
-
-                return previousItems.map((item) =>
-                    item.id === medicine.id
-                        ? {
-                            ...item,
-                            quantity: item.quantity + 1
-                        }
-                        : item
-                );
-
-            }
-
-
-            // If medicine does not exist
-            return [
-                ...previousItems,
-                {
-                    ...medicine,
-                    quantity: 1
+        if (existingMedicine) {
+          return previousItems.map((item) =>
+            item.id === medicine.id
+              ? {
+                  ...item,
+                  quantity: item.quantity + 1,
                 }
-            ];
+              : item,
+          );
+        }
 
-        });
+        const price =
+          (medicine.id
+            .split("")
+            .reduce((total, character) => total + character.charCodeAt(0), 0) %
+            400) +
+          100;
 
+        return [
+          ...previousItems,
+          {
+            ...medicine,
+            quantity: 1,
+            price: price,
+          },
+        ];
+      });
     };
 
 

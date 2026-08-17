@@ -8,6 +8,10 @@ export default function useMedicineDetails(id) {
 
     useEffect(() => {
 
+        setLoading(true);
+        setError(false);
+        setMedicine(null);
+
         fetch(
             `https://api.fda.gov/drug/label.json?search=openfda.spl_set_id:${id}`
         )
@@ -18,8 +22,13 @@ export default function useMedicineDetails(id) {
                 }
 
                 return response.json();
+
             })
             .then((data) => {
+
+                if (!data.results || data.results.length === 0) {
+                    throw new Error("Medicine not found");
+                }
 
                 setMedicine(data.results[0]);
                 setLoading(false);

@@ -16,6 +16,7 @@ import Orders from "./Pages/Orders";
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import NotFound from "./Pages/NotFound";
+import OrderDetails from "./Pages/OrderDetails";
 
 import "./App.css";
 
@@ -90,6 +91,13 @@ export default function App() {
         <Route
           path="*"
           element={<NotFound />}
+        />
+
+        <Route path="/orders" element={<Orders />} />
+
+        <Route
+            path="/orders/:id"
+            element={<OrderDetails />}
         />
 
       </Routes>

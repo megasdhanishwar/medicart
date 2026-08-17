@@ -25,6 +25,10 @@ export default function Navbar() {
             Medicines
           </NavLink>
 
+          <NavLink to="/orders" className="nav-link">
+              Orders
+          </NavLink>
+
           <NavLink to="/about" className="nav-link">
             About
           </NavLink>
