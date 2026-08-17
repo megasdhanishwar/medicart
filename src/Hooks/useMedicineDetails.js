@@ -1,24 +1,29 @@
-import React from "react";
 import { useEffect, useState } from "react";
 
-function useMedicines() {
-  const [medicines, setMedicines] = useState([]);
+export default function useMedicineDetails(id) {
+  const [medicine, setMedicine] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetch(
-      "https://api.fda.gov/drug/label.json?search=openfda.product_type:%22HUMAN%20OTC%20DRUG%22&limit=20",
-    )
+    setLoading(true);
+    setError(false);
+    setMedicine(null);
+
+    fetch(`https://api.fda.gov/drug/label.json?search=openfda.spl_set_id:${id}`)
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Failed to fetch medicines");
+          throw new Error("Medicine not found");
         }
 
         return response.json();
       })
       .then((data) => {
-        setMedicines(data.results);
+        if (!data.results || data.results.length === 0) {
+          throw new Error("Medicine not found");
+        }
+
+        setMedicine(data.results[0]);
         setLoading(false);
       })
       .catch((error) => {
@@ -27,12 +32,11 @@ function useMedicines() {
         setError(true);
         setLoading(false);
       });
-  }, []);
+  }, [id]);
 
   return {
-    medicines,
+    medicine,
     loading,
     error,
   };
 }
-export default useMedicines;
